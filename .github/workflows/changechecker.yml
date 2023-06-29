@@ -1,0 +1,38 @@
+name: Change Checker
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  schedule:
+    - cron: "*/10 * * * *"
+env:
+  CHANGED: "False"
+jobs:
+  Update_For_Changes:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Clone Repo
+          uses: actions/checkout@v3
+
+        - name: Setup Python
+          uses: actions/setup-python@v4
+        
+        - name: Install dependencies
+          run: |
+            pip install -r requirements.txt
+        
+        - name: Setup Git
+          run: |
+            git config --local user.name "github-actions[bot]"
+            git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        
+        - name: Run Program
+          env:
+            BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+            CHAT_ID: ${{ secrets.CHAT_ID }}
+            BASE_URL: ${{ secrets.BASE_URL }}
+          run: python3 main.py
+        
+        - name: Push Changes if needed
+          run: if [$CHANGED -eq "True"] then git push fi
