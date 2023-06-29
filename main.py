@@ -82,8 +82,8 @@ def compare_website(url):
 def push_changes():
     # push changes
     # Config git
-    os.system("git config --local user.name $USERNAME")
-    os.system("git config --local user.email $EMAIL")
+    # os.system("git config --local user.name $USERNAME")
+    # os.system("git config --local user.email $EMAIL")
     os.system("git add .")
     os.system("git commit -m 'Update Website'")
     # send a message with the changes url if any change
