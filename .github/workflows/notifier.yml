@@ -25,6 +25,7 @@ jobs:
                 pip install -r requirements.txt
                 git config --global user.name $USERNAME
                 git config --global user.email $EMAIL
+                git config -l
             
             - name: Run Program
               env:
