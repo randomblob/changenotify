@@ -84,7 +84,8 @@ def push_changes():
     # Config git
     # os.system("git config --local user.name $USERNAME")
     # os.system("git config --local user.email $EMAIL")
-    os.system("git commit -am 'Update Website'")
+    os.system("git add .")
+    os.system("git commit -m 'Update Website'")
     # send a message with the changes url if any change
     hashes = get_git_revisions_hash()
     hash1 = hashes[0][:7]
