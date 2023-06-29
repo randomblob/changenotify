@@ -16,16 +16,17 @@ jobs:
               with:
                   python-version: '3.10' 
             - name: Download Requrements
-              env:
-                BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-                CHAT_ID: ${{ secrets.CHAT_ID }}
-                USERNAME: ${{ secrets.USERNAME }}
-                EMAIL: ${{ secrets.EMAIL }}
-                BASE_URL: ${{ secrets.BASE_URL }}
+
               run: |
                 cd $GITHUB_WORKSPACE
                 pip install -r requirements.txt
             - name: Run Program
+              env:
+                  BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+                  CHAT_ID: ${{ secrets.CHAT_ID }}
+                  USERNAME: ${{ secrets.USERNAME }}
+                  EMAIL: ${{ secrets.EMAIL }}
+                  BASE_URL: ${{ secrets.BASE_URL }}
               run: |
                 cd $GITHUB_WORKSPACE
                 python3 main.py
