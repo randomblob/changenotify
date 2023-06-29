@@ -13,20 +13,20 @@ jobs:
         steps:
             - uses: actions/checkout@v3
               with:
-                persist-credentials: true
+                persist-credentials: false
             - uses: actions/setup-python@v4
               with:
                   python-version: '3.10' 
                   
             - name: Download Requirements and setup git
-              env:
-                USERNAME: ${{ secrets.USERNAME }}
-                EMAIL: ${{ secrets.EMAIL }}
+            #   env:
+            #     USERNAME: ${{ secrets.USERNAME }}
+            #     EMAIL: ${{ secrets.EMAIL }}
               run: |
                 cd $GITHUB_WORKSPACE
                 pip install -r requirements.txt
-                git config --global user.name $USERNAME
-                git config --global user.email $EMAIL
+                git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+                git config --local user.name "github-actions[bot]"
             
             - name: Run Program
               env:
@@ -36,4 +36,8 @@ jobs:
               run: |
                 cd $GITHUB_WORKSPACE
                 python3 main.py
-                git push
+        
+            - name: Push changes
+              uses: ad-m/github-push-action@master
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
