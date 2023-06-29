@@ -106,4 +106,5 @@ except:
 for url in urls:
     compare_website(url)
 if is_changed:
+    os.environ["CHANGED"] = "True"
     push_changes()
