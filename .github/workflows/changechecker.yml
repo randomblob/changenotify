@@ -35,4 +35,4 @@ jobs:
           run: python3 main.py
         
         - name: Push Changes if needed
-          run: if [$CHANGED -eq "True"] then git push fi
+          run: git push
