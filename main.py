@@ -60,7 +60,7 @@ def compare_website(url):
         is_changed = True
         send_msg(new_html_content)
         new_html_content = "Error"
-    elif "Error" in old_html_content and "the following exception occured" not in new_html_content:
+    elif old_html_content=="Error" and "the following exception occured" not in new_html_content:
         # Error got fixed
         is_changed = True
         send_msg(f"{url} Error got fixed")
