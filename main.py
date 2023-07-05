@@ -28,8 +28,9 @@ def send_msg(message):
 
 def get_content(url):
     try:
-        headers = Headers(os="win", headers=True).generate()
+        headers = Headers(browser="chrome", os="win").generate()
         html_content = get(url, headers=headers).text
+        print(html_content)
         html_content = save_and_read(html_content)
         return reformat(html_content)
     except Exception as Error:
