@@ -23,7 +23,7 @@ def get_git_revisions_hash():
 
 
 def send_msg(message):
-    bot.send_message(CHAT_ID, message, disable_web_page_preview=False)
+    bot.send_message(CHAT_ID, message, disable_web_page_preview=True)
 
 
 def get_content(url):
