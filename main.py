@@ -27,21 +27,18 @@ def send_msg(message):
 
 
 def get_content(url):
-    try:
-        headers = Headers(browser="chrome", os="win").generate()
-        html_content = get(url, headers=headers).text
-        print(html_content)
-        html_content = save_and_read(html_content)
-        return reformat(html_content)
-    except Exception as Error:
-        return f"While downlading content from {url} the following exception occured \n{Error}"
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.203'}
+    response = get(url, headers=headers, timeout=5)
+    html_content = response.text
+    html_content = save_and_read(html_content)
+    return reformat(html_content)
 
 
 def get_old_content(url):
     # check if old content exists other wise return that the old content doesn't exist
     url_file_name = urlparse(url).netloc + ".html"
     if not os.path.isfile(url_file_name):
-        return "404"
+        return 404
     old_file = open(url_file_name, "r", newline='\n')
     old_file_content = old_file.read()
     old_file.close()
@@ -71,26 +68,16 @@ def reformat(html_content):
 def compare_website(url):
     global is_changed
     # check if change detected
-    old_html_content = get_old_content(url)
-    new_html_content = get_content(url)
-
-    if old_html_content == "404":
+    try:
+        old_html_content = get_old_content(url)
+        new_html_content = get_content(url)
+    except:
+        return
+    if old_html_content == 404:
         # Website Page does not exist
         is_changed = True
         send_msg(f"For website {url} the original file does not exist")
-    elif  old_html_content != "Error" and "the following exception occured" in new_html_content:
-        # Some error occured
-        # Send the error message
-        is_changed = True
-        send_msg(new_html_content)
-        new_html_content = "Error"
-    elif old_html_content=="Error" and "the following exception occured" not in new_html_content:
-        # Error got fixed
-        is_changed = True
-        send_msg(f"{url} Error got fixed")
-    elif "Error" in old_html_content and "the following exception occured" in new_html_content:
-        # Error did not get fixed
-        new_html_content = "Error"
+
     elif old_html_content != new_html_content:
         is_changed = True
         send_msg(f"{url} was modified.")
