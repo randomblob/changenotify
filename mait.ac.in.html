@@ -13,6 +13,8 @@
 	<link href="/index.php?format=feed&amp;type=atom" rel="alternate" type="application/atom+xml" title="Atom 1.0" />
 	<link href="/templates/purity_iii/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 	<link href="/templates/purity_iii/css/themes/red/bootstrap.css" rel="stylesheet" type="text/css" />
+	<link href="https://mait.ac.in/plugins/system/floating_act_button/asset/css/materialize.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 	<link href="/media/com_jce/site/css/content.min.css?badb4208be409b1335b815dde676300e" rel="stylesheet" type="text/css" />
 	<link href="/templates/system/css/system.css" rel="stylesheet" type="text/css" />
 	<link href="/templates/purity_iii/css/themes/red/legacy-grid.css" rel="stylesheet" type="text/css" />
@@ -22,33 +24,68 @@
 	<link href="/templates/purity_iii/css/themes/red/off-canvas.css" rel="stylesheet" type="text/css" />
 	<link href="/templates/purity_iii/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 	<link href="/templates/purity_iii/css/themes/red/layouts/corporate.css" rel="stylesheet" type="text/css" />
-	<link href="/media/mod_rssocial/css/rssocial-font.css?009d664dfdd55ba59603743ca95507e6" rel="stylesheet" type="text/css" />
-	<link href="/media/mod_rssocial/css/rssocial-anim.css?009d664dfdd55ba59603743ca95507e6" rel="stylesheet" type="text/css" />
-	<link href="/media/mod_rssocial/css/rssocial.css?009d664dfdd55ba59603743ca95507e6" rel="stylesheet" type="text/css" />
-	<link href="/modules/mod_creativesocialwidget/assets/css/main.css?version=2.0.1-pro" rel="stylesheet" type="text/css" />
-	<link href="/modules/mod_creativesocialwidget/assets/css/wrapper_templates.css?version=2.0.1-pro" rel="stylesheet" type="text/css" />
 	<link href="/modules/mod_djimageslider/themes/default/css/djimageslider.css" rel="stylesheet" type="text/css" />
 	<style type="text/css">
-#rssocial-319 .rssocial-icons > li { font-size: 24px; }#rssocial-319 .rssocial-icons .rssocial-caption > a { font-size: 14px; }#rssocial-319 .rssocial-icons-bg .rssocial-link { color: #ffffff; }#rssocial-319 .rssocial-icons-bg .rssocial-link:hover { color: #ffffff; }#rssocial-319 .rssocial-icons-bg .rssocial-link { background-color: rgba(0, 0, 0, 0.75); }#rssocial-319 .rssocial-icons-bg .rssocial-link:hover { background-color: rgba(0, 0, 0, 0.5); }#rssocial-319 .rssocial-caption > a { color: #ffffff; }#rssocial-319 .rssocial-caption > a:hover { color: #ffffff; }#rssocial-319 .rssocial-caption { background-color: rgba(0, 0, 0, 0.75); }#rssocial-319 .rssocial-caption:hover { background-color: rgba(0, 0, 0, 0.5); }
+ 
+	             	.navi{
+	             		position:fixed !important;
+	             		bottom:0px !important;right:0px !important;
+	             		opacity: 0.2;
+	             		
+	             	}
+	             	.navi:hover{
+	             		opacity: 1;
+	             	}
+	             	.btnclrm{
+	             		background:#f44336;
+	             	}
+	             	.btnclr1{
+	             		background:#3f51b5;
+	             	}
+	             	.btnclr2{
+	             		background:#00bcd4;
+	             	}
+	             	.btnclr3{
+	             		background:#e91e63;
+	             	}
+	             	.btnclr4{
+	             		background:#cddc39;
+	             	}
+	             	
+	             	.btn-floating:hover {
+					    background-color: #607d8b;
+					}
+
+	              	.navi ul li{
+	             		list-style: none;
+	             	}
+	               
 	</style>
-	<script src="/media/jui/js/jquery.min.js?009d664dfdd55ba59603743ca95507e6" type="text/javascript"></script>
-	<script src="/media/jui/js/jquery-noconflict.js?009d664dfdd55ba59603743ca95507e6" type="text/javascript"></script>
-	<script src="/media/jui/js/jquery-migrate.min.js?009d664dfdd55ba59603743ca95507e6" type="text/javascript"></script>
-	<script src="/media/system/js/caption.js?009d664dfdd55ba59603743ca95507e6" type="text/javascript"></script>
+	<script src="/media/jui/js/jquery.min.js?4b1f82792079eb312041088750fb5119" type="text/javascript"></script>
+	<script src="/media/jui/js/jquery-noconflict.js?4b1f82792079eb312041088750fb5119" type="text/javascript"></script>
+	<script src="/media/jui/js/jquery-migrate.min.js?4b1f82792079eb312041088750fb5119" type="text/javascript"></script>
+	<script src="https://mait.ac.in/plugins/system/floating_act_button/asset/js/materialize.min.js" type="text/javascript"></script>
+	<script src="/media/system/js/caption.js?4b1f82792079eb312041088750fb5119" type="text/javascript"></script>
 	<script src="/plugins/system/t3/base-bs3/bootstrap/js/bootstrap.js" type="text/javascript"></script>
 	<script src="/plugins/system/t3/base-bs3/js/jquery.tap.min.js" type="text/javascript"></script>
 	<script src="/plugins/system/t3/base-bs3/js/off-canvas.js" type="text/javascript"></script>
 	<script src="/plugins/system/t3/base-bs3/js/script.js" type="text/javascript"></script>
 	<script src="/plugins/system/t3/base-bs3/js/menu.js" type="text/javascript"></script>
-	<script src="/media/mod_rssocial/js/rssocial.js?009d664dfdd55ba59603743ca95507e6" type="text/javascript"></script>
-	<script src="/modules/mod_creativesocialwidget/assets/js/creativelib.js" type="text/javascript"></script>
-	<script src="/modules/mod_creativesocialwidget/assets/js/creativelib-ui.js" type="text/javascript"></script>
-	<script src="/modules/mod_creativesocialwidget/assets/js/creativesocialwidget.js?version=2.0.1-pro" type="text/javascript"></script>
 	<script src="/media/djextensions/jquery-easing/jquery.easing.min.js" type="text/javascript"></script>
 	<script src="/modules/mod_djimageslider/assets/js/slider.js?v=4.4" type="text/javascript"></script>
 	<script src="/modules/mod_vertical_scroll_recent_article/mod_vertical_scroll_recent_article.js" type="text/javascript"></script>
 	<script type="text/javascript">
-(function(d){
+
+
+	        	document.addEventListener('DOMContentLoaded', function() {
+			      	var elems = document.querySelectorAll('.fixed-action-btn');
+			      	var instances = M.FloatingActionButton.init(elems, {
+			        	direction: 'left',
+			        	hoverEnabled: true,
+			      	});
+				});
+
+	        (function(d){
 					  var js, id = 'powr-js', ref = d.getElementsByTagName('script')[0];
 					  if (d.getElementById(id)) {return;}
 					  js = d.createElement('script'); js.id = id; js.async = true;
@@ -1144,142 +1181,6 @@ vsra_createscroll();
 <div class="col-md-12 text-center"><a href="https://www.linkedin.com/school/maharaja-agrasen-institute-of-technology/"><img src="/images/Linkedin.png" alt="NBA 1" width="44" height="33" /></a></div>
 </div>
 </div></div>
-</div></div></div><div class="t3-module module " id="Mod319"><div class="module-inner"><h3 class="module-title "><span>RSSocial!</span></h3><div class="module-ct">
-<div id="rssocial-319" class="rssocial-container rssocial-inline rssocial-center ">
-		<ul id="rssocial-ul-319" class="rssocial-icons rssocial-icons-bg">
-		<li>
-		<a id="rssocial-facebook-icon" class="rssocial-link push" target="_blank" href="/">
-			<span class="rssocial-icon rssocial-icon-facebook"></span>
-		</a>
-			</li>
-	<li>
-		<a id="rssocial-x-twitter-icon" class="rssocial-link push" target="_blank" href="/">
-			<span class="rssocial-icon rssocial-icon-x-twitter"></span>
-		</a>
-			</li>
-	<li>
-		<a id="rssocial-instagram-icon" class="rssocial-link push" target="_blank" href="/">
-			<span class="rssocial-icon rssocial-icon-instagram"></span>
-		</a>
-			</li>
-	<li>
-		<a id="rssocial-linkedin-icon" class="rssocial-link push" target="_blank" href="/">
-			<span class="rssocial-icon rssocial-icon-linkedin"></span>
-		</a>
-			</li>
-	<li>
-		<a id="rssocial-youtube-icon" class="rssocial-link push" target="_blank" href="/">
-			<span class="rssocial-icon rssocial-icon-youtube"></span>
-		</a>
-			</li>
-	<li>
-		<a id="rssocial-tiktok-icon" class="rssocial-link push" target="_blank" href="/">
-			<span class="rssocial-icon rssocial-icon-tiktok"></span>
-		</a>
-			</li>
-	<li>
-		<a id="rssocial-vimeo-icon" class="rssocial-link push" target="_blank" href="/">
-			<span class="rssocial-icon rssocial-icon-vimeo"></span>
-		</a>
-			</li>
-	<li>
-		<a id="rssocial-reddit-icon" class="rssocial-link push" target="_blank" href="/">
-			<span class="rssocial-icon rssocial-icon-reddit"></span>
-		</a>
-			</li>
-	<li>
-		<a id="rssocial-tumblr-icon" class="rssocial-link push" target="_blank" href="/">
-			<span class="rssocial-icon rssocial-icon-tumblr"></span>
-		</a>
-			</li>
-	<li>
-		<a id="rssocial-snapchat-icon" class="rssocial-link push" target="_blank" href="https://www.snapchat.com/add/">
-			<span class="rssocial-icon rssocial-icon-snapchat"></span>
-		</a>
-			</li>
-	<li>
-		<a id="rssocial-whatsapp-icon" class="rssocial-link push" target="_blank" href="https://web.whatsapp.com/send?phone=">
-			<span class="rssocial-icon rssocial-icon-whatsapp"></span>
-		</a>
-			</li>
-	<li>
-		<a id="rssocial-skype-icon" class="rssocial-link push" target="_blank" href="skype:?chat">
-			<span class="rssocial-icon rssocial-icon-skype"></span>
-		</a>
-			</li>
-	<li>
-			<a id="rssocial-pinterest-icon" class="rssocial-link push" target="_blank" href="/">
-			<span class="rssocial-icon rssocial-icon-pinterest"></span>
-		</a>
-			</li>
-	<li>
-		<a id="rssocial-flickr-icon" class="rssocial-link push" target="_blank" href="/">
-			<span class="rssocial-icon rssocial-icon-flickr"></span>
-		</a>
-			</li>
-	<li>
-		<a id="rssocial-soundcloud-icon" class="rssocial-link push" target="_blank" href="/">
-			<span class="rssocial-icon rssocial-icon-soundcloud"></span>
-		</a>
-			</li>
-	<li>
-		<a id="rssocial-spotify-icon" class="rssocial-link push" target="_blank" href="/">
-			<span class="rssocial-icon rssocial-icon-spotify"></span>
-		</a>
-			</li>
-	<li>
-		<a id="rssocial-github-icon" class="rssocial-link push" target="_blank" href="/">
-			<span class="rssocial-icon rssocial-icon-github"></span>
-		</a>
-			</li>
-        <li>
-            <a id="rssocial-recommend-icon" class="rssocial-link push" target="_blank" href="/index.php/component/mailto/?tmpl=component&amp;template=purity_iii&amp;link=4ec454f9d83e9fbe2be93655821655119d786eff" onclick="window.open(this.href,'win2','width=550,height=450,menubar=yes,resizable=yes'); return false;">
-                <span class="rssocial-icon rssocial-icon-recommend"></span>
-            </a>
-                    </li>
-	<li>
-		<a id="rssocial-mail-icon" class="rssocial-link push" target="_blank" href="mailto:">
-			<span class="rssocial-icon rssocial-icon-mail"></span>
-		</a>
-			</li>
-		</ul>
-</div>
-<div class="rssocial-clear"></div>
-</div></div></div><div class="t3-module module " id="Mod320"><div class="module-inner"><h3 class="module-title "><span>Creative Social Widget</span></h3><div class="module-ct"><div id="ssw_main_wrapper" class="creativesocialwidget_normal_view " style="width: 100%"><div class="creativesocialwidget_wrapper creativesocialwidget_wrapper_template_0 creativesocialwidget_wrapper_aligned_center creativesocialwidget_hover_zoom creativesocialwidget_wrapper_animate" style="padding: 0px 0px; "><div class="creativesocialwidget_item_wrapper" style="width: 48px;height: 48px; margin: 4px 4px;">
-							<div class="creativesocialwidget_item" style="">
-								<a href="http://www.facebook.com/" title="Follow via Facebook" target="_blank">
-									<img  src="/modules/mod_creativesocialwidget/assets/images/Facebook/icon-4-normal-64.png" />
-								</a>
-							</div>
-						</div><div class="creativesocialwidget_item_wrapper" style="width: 48px;height: 48px; margin: 4px 4px;">
-							<div class="creativesocialwidget_item" style="">
-								<a href="http://www.linkedin.com/" title="Follow via LinkedIn" target="_blank">
-									<img  src="/modules/mod_creativesocialwidget/assets/images/LinkedIn/icon-4-normal-64.png" />
-								</a>
-							</div>
-						</div><div class="creativesocialwidget_item_wrapper" style="width: 48px;height: 48px; margin: 4px 4px;">
-							<div class="creativesocialwidget_item" style="">
-								<a href="https://www.youtube.com/" title="Follow via YouTube" target="_blank">
-									<img  src="/modules/mod_creativesocialwidget/assets/images/Youtube/icon-4-normal-64.png" />
-								</a>
-							</div>
-						</div><div title="Powered By Creative Social Widget" class="creativesocialwidget_item_wrapper" style="font-size: 10px !important;text-align: right;font-style: italic;white-space: nowrap;width: 48px; margin: 0;vertical-align: bottom;">By <a class="csw_powred_by_a" href="http://creative-solutions.net/joomla/creative-social-widget" target="_blank" >CSW</a></div></div></div><style>
-.csw_powred_by_a {
-	color: #0092DB;
-	font-weight: bold;
-	text-shadow: 1px 0px 0px rgba(0, 0, 0, 0.8);
-	font-size: 11px;
-
-	-webkit-transition:  all linear 0.2s;
-	-moz-transition: all linear 0.2s;
-	-o-transition: all linear 0.2s;
-	transition: all linear 0.2s;
-}
-.csw_powred_by_a:hover {
-	color: rgb(228, 6, 6);
-	text-decoration: none;
-}
-</style>
 </div></div></div>
 							</div>
 					<div class=" col-lg-3 col-md-3 col-sm-3 col-xs-12">
@@ -1405,5 +1306,16 @@ mt_trigg();
     });
 });
 </script>
-</body>
+<div class="fixed-action-btn navi click-to-toggle">
+				      <a class="btn-floating btn-large btnclrm">
+				        <i class="fa fa-share-square"></i>
+				      </a>
+				      <ul>
+				        <li><a href="/" class="btn-floating btnclr1"><i class="fa fa-facebook-f"></i></a></li>
+				        <li><a href="/" class="btn-floating btnclr2"><i class="fa fa-twitter"></i></a></li>
+				        <li><a href="/" class="btn-floating btnclr3"><i class="fa fa-google-plus"></i></a></li>
+				        <li><a href="/" class="btn-floating btnclr4"><i class="fa fa-pinterest"></i></a></li>
+				      </ul>
+				   </div>
+				   </body>
 </html>
