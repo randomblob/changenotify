@@ -102,6 +102,7 @@ def push_changes():
     send_msg(f"Update url: {BASE_URL}/compare/{hash2}..{hash1}")
 
 # JEE Only
+jeeUpdate = False
 def fetch_latest_notices():
     url = r"https://jeemain.nta.ac.in/"
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.203'}
@@ -138,6 +139,7 @@ def check_for_changes(previous_notices):
     latest_notices = fetch_latest_notices()
     new_notices = [(title, href) for title, href in latest_notices if title not in previous_notices]
     if new_notices:
+        jeeUpdate = True
         msg = "New Notices added or changed:\n"
         for title, href in new_notices:
             encoded_href = urllib.parse.quote(href, safe=':\\/')
@@ -164,5 +166,5 @@ except:
 
 for url in urls:
     compare_website(url)
-if is_changed:
+if is_changed or jeeUpdate:
     push_changes()
