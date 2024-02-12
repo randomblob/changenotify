@@ -5,6 +5,8 @@ import csv
 from urllib.parse import urlparse
 import subprocess
 from fake_headers import Headers
+from bs4 import BeautifulSoup
+import urllib.parse
 
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
 CHAT_ID = os.environ.get('CHAT_ID')
@@ -98,6 +100,56 @@ def push_changes():
     hash1 = hashes[0][:7]
     hash2 = hashes[1][:7]
     send_msg(f"Update url: {BASE_URL}/compare/{hash2}..{hash1}")
+
+# JEE Only
+def fetch_latest_notices():
+    url = r"https://jeemain.nta.ac.in/"
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.203'}
+    response = get(url, headers=headers, timeout=5)
+    soup = BeautifulSoup(response.content, "html.parser")
+    notices = soup.find_all("div", class_="news-eve-scroll pr-2")
+    latest_notices = []
+    for notice in notices:
+        li_elements = notice.find_all("li")
+        for li in li_elements:
+            title = li.text.strip().replace("\n", "").replace("\t", "").replace("\r", "")
+            try:
+                href = li.find("a")["href"]
+                latest_notices.append((title, href))
+            except:
+                latest_notices.append((title, ""))
+                
+    return latest_notices
+
+def read_notices_from_file():
+    try:
+        with open("jee.txt", "r") as file:
+            return [line.strip() for line in file.readlines()]
+    except FileNotFoundError:
+        return []
+
+def write_notices_to_file(notices):
+    with open("jee.txt", "w") as file:
+        for title, href in notices:
+            file.write(f"{title}\n")
+
+# Function to check for changes in notices
+def check_for_changes(previous_notices):
+    latest_notices = fetch_latest_notices()
+    new_notices = [(title, href) for title, href in latest_notices if title not in previous_notices]
+    if new_notices:
+        msg = "New Notices added or changed:\n"
+        for title, href in new_notices:
+            encoded_href = urllib.parse.quote(href, safe=':\\/')
+            msg += f"{title} - {encoded_href}\n"
+        send_msg(msg)
+    return latest_notices
+
+try:
+    check_for_changes(read_notices_from_file())
+    write_notices_to_file(fetch_latest_notices())
+except:
+    pass
 
 
 # Create a csv file if not exists for the urls
