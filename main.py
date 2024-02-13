@@ -137,6 +137,7 @@ def write_notices_to_file(notices):
 
 # Function to check for changes in notices
 def check_for_changes(previous_notices):
+    global jeeUpdate
     latest_notices = fetch_latest_notices()
     new_notices = [(title, href) for title, href in latest_notices if title not in previous_notices]
     if new_notices:
@@ -148,14 +149,14 @@ def check_for_changes(previous_notices):
         send_msg(msg)
     return latest_notices
 
-# try:
-check_for_changes(read_notices_from_file())
-write_notices_to_file(fetch_latest_notices())
-# except:
-#     pass
+try:
+    check_for_changes(read_notices_from_file())
+    write_notices_to_file(fetch_latest_notices())
+except:
+    pass
 
 
-# Create a csv file if not exists for the urls
+# # Create a csv file if not exists for the urls
 try:
     urls_file = open("urls.csv", "r")
     urls = [url[0] for url in csv.reader(urls_file)]
