@@ -130,6 +130,7 @@ def read_notices_from_file():
         return []
 
 def write_notices_to_file(notices):
+    global jeeUpdate
     with open("jee.txt", "w") as file:
         for title, href in notices:
             file.write(f"{title}\n")
@@ -147,11 +148,11 @@ def check_for_changes(previous_notices):
         send_msg(msg)
     return latest_notices
 
-try:
-    check_for_changes(read_notices_from_file())
-    write_notices_to_file(fetch_latest_notices())
-except:
-    pass
+# try:
+check_for_changes(read_notices_from_file())
+write_notices_to_file(fetch_latest_notices())
+# except:
+#     pass
 
 
 # Create a csv file if not exists for the urls
