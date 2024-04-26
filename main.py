@@ -7,10 +7,14 @@ import subprocess
 from fake_headers import Headers
 from bs4 import BeautifulSoup
 import urllib.parse
+from dotenv import load_dotenv
 
+load_dotenv()
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
 CHAT_ID = os.environ.get('CHAT_ID')
 BASE_URL = os.environ.get('BASE_URL')
+DEBUG = os.environ.get('DEBUG')
+
 bot = telebot.TeleBot(BOT_TOKEN)
 
 is_changed = False
@@ -149,6 +153,53 @@ def check_for_changes(previous_notices):
         send_msg(msg)
     return latest_notices
 
+def read_url_file():
+    try:
+        with open("urls.csv", "r") as file:
+            return [url[0] for url in csv.reader(file)]
+    except FileNotFoundError:
+        return []
+    
+def write_url_file(urls):
+    with open("urls.csv", "w", newline='\n') as file:
+        writer = csv.writer(file)
+        for url in urls:
+            writer.writerow([url])
+
+new_updates = bot.get_updates(allowed_updates=['messages'],long_polling_timeout=1)
+last_update_id = None
+try:
+    for update in new_updates:
+        last_update_id = update.update_id
+        if update.message.chat.id == int(CHAT_ID):
+            message = update.message.text.split()
+            if len(message) != 2 or message[0] not in ["delete", "add"]:
+                send_msg("Invalid Command. Send in the format: delete <url> or add <url>.")
+            if message[0] == "delete":
+                url = message[1]
+                urls = read_url_file()
+                if url in urls:
+                    urls.remove(url)
+                    write_url_file(urls)
+                    send_msg(f"Deleted {url}")
+                else:
+                    send_msg(f"{url} not found in the list.")
+            elif message[0] == "add":
+                url = message[1]
+                urls = read_url_file()
+                if url not in urls:
+                    urls.append(url)
+                    write_url_file(urls)
+                    send_msg(f"Added {url}")
+                else:
+                    send_msg(f"{url} already exists in the list.")
+            send_msg(f"Current URLs: {'\n'.join(read_url_file())}")
+except Exception as e:
+    send_msg(f"Error: {e}")
+
+if last_update_id:
+    bot.get_updates(offset=last_update_id+1, long_polling_timeout=0)
+
 try:
     check_for_changes(read_notices_from_file())
     write_notices_to_file(fetch_latest_notices())
@@ -168,5 +219,5 @@ except:
 
 for url in urls:
     compare_website(url)
-if is_changed or jeeUpdate:
+if DEBUG is not None and (is_changed or jeeUpdate):
     push_changes()
