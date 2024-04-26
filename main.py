@@ -193,7 +193,7 @@ try:
                     send_msg(f"Added {url}")
                 else:
                     send_msg(f"{url} already exists in the list.")
-            send_msg(f"Current URLs: {'\n'.join(read_url_file())}")
+            send_msg(f"Current URLs: {' ,'.join(read_url_file())}")
 except Exception as e:
     send_msg(f"Error: {e}")
 
