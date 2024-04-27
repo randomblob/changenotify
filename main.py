@@ -219,5 +219,5 @@ except:
 
 for url in urls:
     compare_website(url)
-if DEBUG is not None and (is_changed or jeeUpdate):
+if DEBUG is None and (is_changed or jeeUpdate):
     push_changes()
