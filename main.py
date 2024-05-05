@@ -181,6 +181,7 @@ try:
                 if url in urls:
                     urls.remove(url)
                     write_url_file(urls)
+                    is_changed = True
                     send_msg(f"Deleted {url}")
                 else:
                     send_msg(f"{url} not found in the list.")
@@ -190,6 +191,7 @@ try:
                 if url not in urls:
                     urls.append(url)
                     write_url_file(urls)
+                    is_changed = True
                     send_msg(f"Added {url}")
                 else:
                     send_msg(f"{url} already exists in the list.")
