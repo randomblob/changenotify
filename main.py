@@ -175,7 +175,6 @@ def read_notices_from_file():
 
 
 def write_notices_to_file(notices):
-    global jeeUpdate
     with open("jee.txt", "w") as file:
         for title, href in notices:
             file.write(f"{title}\n")
@@ -183,13 +182,13 @@ def write_notices_to_file(notices):
 
 # Function to check for changes in notices
 def check_for_changes(previous_notices):
-    global jeeUpdate
+    global is_changed
     latest_notices = fetch_latest_notices()
     new_notices = [
         (title, href) for title, href in latest_notices if title not in previous_notices
     ]
     if new_notices:
-        jeeUpdate = True
+        is_changed = True
         msg = "New Notices added or changed:\n"
         for title, href in new_notices:
             encoded_href = urllib.parse.quote(href, safe=":\\/")
@@ -291,9 +290,9 @@ def check_ipu_updates():
     if not latest_notices:
         return
     old_notices = read_ipu_notices_from_file()
-    # Compare last 100 notices
-    latest_notices = latest_notices[:100]
-    old_notices = old_notices[:100]
+    # Compare last 50 notices
+    latest_notices = latest_notices[:50]
+    # old_notices = old_notices[:100]
     # Only update for at most 5 notices
     updates = 0
     for title, url in latest_notices:
@@ -380,11 +379,11 @@ if __name__ == "__main__":
     if last_update_id:
         bot.get_updates(offset=last_update_id + 1, long_polling_timeout=0)
 
-    try:
-        check_for_changes(read_notices_from_file())
-        write_notices_to_file(fetch_latest_notices())
-    except:
-        pass
+    # try:
+    #     check_for_changes(read_notices_from_file())
+    #     write_notices_to_file(fetch_latest_notices())
+    # except:
+    #     pass
     for url in urls:
         compare_website(url)
     if maitUpdates:
