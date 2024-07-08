@@ -259,7 +259,7 @@ def fetch_ipu_notices():
     all_notices = soup.select("tr td a")
     latest_notices = []
     for notice in all_notices[:100]:
-        title = notice.text.strip()
+        title = notice.text.strip().replace("\n", "").replace("\t", "").replace("\r", "")
         url = r"http://www.ipu.ac.in" + notice["href"]
         url = urllib.parse.quote(url, safe=":\\/")
         latest_notices.append((title, url))
