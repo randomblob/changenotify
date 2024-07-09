@@ -261,9 +261,7 @@ def fetch_ipu_notices(notices_url, base_url):
     for notice in all_notices[:100]:
         title = notice.text.strip().replace("\n", " ").replace("\t", "").replace("\r", "")
         url = base_url + notice["href"]
-        print(f"Normal Url: {url}")
         url = urllib.parse.quote(urllib.parse.unquote(url), safe=":\\/")
-        print(f"Encoded URL: {url}")
         latest_notices.append((title, url))
     return latest_notices
 
