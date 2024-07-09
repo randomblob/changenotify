@@ -259,7 +259,7 @@ def fetch_ipu_notices(notices_url, base_url):
     all_notices = soup.select("tr td a")
     latest_notices = []
     for notice in all_notices[:100]:
-        title = notice.text.strip().replace("\n", " ").replace("\t", " ").replace("\r", " ")
+        title = notice.text.strip().replace("\n", " ").replace("\t", "").replace("\r", "")
         url = base_url + notice["href"]
         url = urllib.parse.quote(url, safe=":\\/")
         latest_notices.append((title, url))
@@ -390,7 +390,7 @@ if __name__ == "__main__":
     if maitUpdates:
         check_mait_updates()
     if ipuUpdates:
-        check_ipu_updates(r"http://ggsipu.ac.in/ExamResults/ExamResultsmain.htm", r"http://ggsipu.ac.in/ExamResults", "files/ipuexams.txt")
+        check_ipu_updates(r"http://ggsipu.ac.in/ExamResults/ExamResultsmain.htm", r"http://ggsipu.ac.in/ExamResults/", "files/ipuexams.txt")
         # check_ipu_updates(r"http://www.ipu.ac.in/notices.php", r"http://www.ipu.ac.in", "files/ipu.txt")
     if DEBUG is None and (is_changed or jeeUpdate):
         commit_changes()
