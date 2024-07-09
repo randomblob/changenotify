@@ -249,8 +249,8 @@ def check_mait_updates():
 
 
 # IPU Updates
-def fetch_ipu_notices():
-    url = r"http://www.ipu.ac.in/notices.php"
+def fetch_ipu_notices(notices_url, base_url):
+    url = notices_url
     try:
         response = get(url)
     except:
@@ -260,15 +260,15 @@ def fetch_ipu_notices():
     latest_notices = []
     for notice in all_notices[:100]:
         title = notice.text.strip().replace("\n", " ").replace("\t", " ").replace("\r", " ")
-        url = r"http://www.ipu.ac.in" + notice["href"]
+        url = base_url + notice["href"]
         url = urllib.parse.quote(url, safe=":\\/")
         latest_notices.append((title, url))
     return latest_notices
 
 
-def read_ipu_notices_from_file():
+def read_ipu_notices_from_file(file_path):
     try:
-        file = open("files/ipu.txt", "r")
+        file = open(file_path, "r")
     except FileNotFoundError:
         return []
     notices = [line.strip() for line in file.readlines()]
@@ -276,20 +276,20 @@ def read_ipu_notices_from_file():
     return notices
 
 
-def write_ipu_notices_to_file(notices):
-    file = open("files/ipu.txt", "w")
+def write_ipu_notices_to_file(notices, file_path):
+    file = open(file_path, "w")
     for title, url in notices:
         file.write(f"{title}\n")
     file.close()
 
 
-def check_ipu_updates():
+def check_ipu_updates(notices_url, base_url, file_path):
     global is_changed
     updated = False
-    latest_notices = fetch_ipu_notices()
+    latest_notices = fetch_ipu_notices(notices_url, base_url)
     if not latest_notices:
         return
-    old_notices = read_ipu_notices_from_file()
+    old_notices = read_ipu_notices_from_file(file_path)
     # Compare last 50 notices
     latest_notices = latest_notices[:50]
     # old_notices = old_notices[:100]
@@ -302,7 +302,7 @@ def check_ipu_updates():
             is_changed = True
             updated = True
     if updated:
-        write_ipu_notices_to_file(latest_notices)
+        write_ipu_notices_to_file(latest_notices, file_path)
 
 
 def read_url_file():
@@ -327,6 +327,7 @@ def current_websites():
         urls.append("https://mait.ac.in/")
     if ipuUpdates:
         urls.append("http://ipu.ac.in/")
+        urls.append("http://ggsipu.ac.in/ExamResults/ExamResultsmain.htm")
     if jeeUpdate:
         urls.append("https://jeemain.nta.ac.in/")
     send_msg(f"Current URLs: {' ,'.join(urls)}")
@@ -389,6 +390,7 @@ if __name__ == "__main__":
     if maitUpdates:
         check_mait_updates()
     if ipuUpdates:
-        check_ipu_updates()
+        check_ipu_updates(r"http://ggsipu.ac.in/ExamResults/ExamResultsmain.htm", r"http://ggsipu.ac.in/ExamResults", "files/ipuexams.txt")
+        # check_ipu_updates(r"http://www.ipu.ac.in/notices.php", r"http://www.ipu.ac.in", "files/ipu.txt")
     if DEBUG is None and (is_changed or jeeUpdate):
         commit_changes()
