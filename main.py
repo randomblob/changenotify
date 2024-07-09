@@ -296,7 +296,7 @@ def check_ipu_updates(notices_url, base_url, file_path):
     # Only update for at most 5 notices
     updates = 0
     for title, url in latest_notices:
-        if updates < 5 and title not in old_notices:
+        if updates < 10 and title not in old_notices:
             updates += 1
             send_normal_msg(f"New Notice on IPU: {title} - {url}")
             is_changed = True
