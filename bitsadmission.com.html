@@ -184,5 +184,19 @@ $(function(){
   </section>
 <div id="footer"></div>
 </body>
+<script type="text/javascript">
+const urlParams = new URLSearchParams(window.location.search);
+const UTM = urlParams.get('utm_source');
+//alert("NKS ="+UTM);
+  $.ajax({
+      url: "https://admission.bits-pilani.ac.in/BITS_LP-25/lp_gtm_ba.asp?utm_source="+UTM+"&utm_medium=16194",
+      type: "POST",
+      data: {
+        UTM: UTM,
+      },
 
+      complete: function() {
+      }
+    });
+</script>
 </html>
