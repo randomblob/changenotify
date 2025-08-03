@@ -107,7 +107,7 @@
         </div>
         <!-- <div data-spy="affix" data-offset-top="121" style="height: 50px; width:100%; top:0; z-index: 999;"> -->
         <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-2" style="background:#098CC4;">
-            <ul class="nav navbar-nav navbar-right col-md-10" id="blacknavlist">
+            <ul class="nav navbar-nav" id="blacknavlist">
                 
                <li style="font-weight: 600;"><a  href="/"  >Home</a></li>
                 
@@ -162,6 +162,21 @@
     .marquee-text>marquee {
         padding: 5px;
         font-size: 1.2em;
+    }
+
+    /* Center the secondary navbar list */
+    #blacknavlist{
+        float:none;
+        margin:0 auto;
+        width:85%; /* leave some blue space on both sides */
+        display:flex;
+        justify-content:center;
+        flex-wrap:wrap;
+        padding-left:0; /* remove bootstrap left padding */
+    }
+    /* Remove default left float for list items inside the blue nav so lines center when wrapped */
+    #blacknavlist > li{
+        float:none;
     }
 </style>
  
