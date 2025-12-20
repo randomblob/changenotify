@@ -3,6 +3,9 @@
   <meta name="google-site-verification" content="RguiFGIhJECH39lJGdC7cAQxalsB6qdrKT2aUKoNJqM" />
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+
 <script> 
 $(function(){
   $("#header").load("header.html"); 
@@ -68,42 +71,36 @@ $(function(){
         <tr style="background-color: #d7f1f8">
           <td align="left" width="100%" style="border: 1px solid black; border-radius: 08px; vertical-align: top">
             <p class="centeredText" style="padding: 15px 5px 5px 10px;align:left;">
-                  <span style="align:left;:hover {background-color: #a2d9ce;}; line-height: 3.25;margin-bottom: 5px;margin-right: 5px;">
-                    
                       <button type="submit" style="text-align: center;padding: 5px 5px 5px 5px;" id="registerButton">
                         <strong>
                             <font color='navy'>BITSAT-2026: </font>
                         </strong>
-                        <a href='https://cdn3.digialm.com/EForms/configuredHtml/1823/94103/Index.html?_gl=1*laoo8v*_gcl_au*MTU4NzIwMjAxMi4xNzYzNTUwMzc2LjE1OTU1NDE4MjIuMTc2NTQyNzE5OS4xNzY1NDI4MzY4' target='_blank'>
+                        <a title="You will be redirected to BITS Pilani's official BITSAT application portal, securely hosted on cdn3.digialm.com." id="BITSAT-2026_message" target='_blank' onclick="show_message()">
                           <font color='red'>Click here</font></a> <font color="navy"> to apply for BITSAT-2026.</font>
+                        </a>
                           <br />
                           <font font-size="8px">(for admission to First degree (B.E., M.Sc. and B.Pharm.) programmes)</font>
-                        </a>
                     </button>
-                  </span>
-                  <span style="align:left;:hover {background-color: #a2d9ce;}; line-height: 3.25;margin-bottom: 5px;margin-right: 5px;">
-                    <a href='https://cdn3.digialm.com/EForms/configuredHtml/1823/96992/Index.html?_gl=1*1967jd6*_gcl_au*MTU4NzIwMjAxMi4xNzYzNTUwMzc2LjE1OTU1NDE4MjIuMTc2NTQyNzE5OS4xNzY1NDI4MzY4' target='_blank'>
-                      <button type="submit" style="text-align: center;padding: 5px 5px 5px 5px;" id="registerButton">
+                        <button type="submit" style="text-align: center;padding: 5px 5px 5px 5px;" id="registerButton">
                         <strong>
                             <font color='navy'>International students: ISA-2026 </font>
                         </strong>
+                        <a title="You will be redirected to BITS Pilani's official ISA application portal, securely hosted on cdn3.digialm.com." id="ISA-2026_message" target='_blank' onclick="show_messageISA()">
                         <font color='red'>Click here</font></a> <font color="navy">to apply</font>
+                        </a>
                         <br />
                         <font font-size="8px">(for admission to First degree (B.E., M.Sc. and B.Pharm.) programmes)</font>
                      </button>
-                    </a>
-                  </span>
-                  <span style="align:left;:hover {background-color: #a2d9ce;}; line-height: 3.25;margin-bottom: 5px;margin-right: 5px;">
-                    <a href='https://cdn3.digialm.com/EForms/configuredHtml/1823/96990/Index.html?_gl=1*zi6kkt*_gcl_au*MTU4NzIwMjAxMi4xNzYzNTUwMzc2LjE1OTU1NDE4MjIuMTc2NTQyNzE5OS4xNzY1NDI4MzY4' target='_blank'>
                       <button type="submit" style="text-align: center;padding: 5px 5px 5px 5px;" id="registerButton">
                         <strong>
                             <font color='navy'>BAAT-2026: </font>
                         </strong>
+                        <a title="You will be redirected to BITS Pilani's official BAAT application portal, securely hosted on cdn3.digialm.com." id="BAAT-2026_message" target='_blank'>
                         <font color='red'>Click here</font></a> <font color="navy">to apply for BAAT-2026</font>
+                        </a>
                         <br />
                         <font font-size="8px">(for admission to Two-Year On-Campus MBA in Business Analytics Programme of BITS Pilani, Pilani Campus)</font>                        
                         </button>
-                    </a>
                   </span>
               </font>
               </font>
@@ -151,6 +148,7 @@ $(function(){
 <div id="footer"></div>
 </body>
 <script type="text/javascript">
+/*
 const urlParams = new URLSearchParams(window.location.search);
 const UTM = urlParams.get('utm_source');
 //alert("NKS ="+UTM);
@@ -164,5 +162,60 @@ const UTM = urlParams.get('utm_source');
       complete: function() {
       }
     });
+*/
+
+
+
+$('#BITSAT-2026_message').on('click', function () {
+    var timerInterval;
+    swal.fire({
+      title: 'BITSAT-2026',
+      html: 'You are being redirected to our official application portal on cdn3.digialm.com.',
+      timer: 3000,
+      showCancelButton: false,
+      showConfirmButton: false,
+      timerProgressBar: true
+    }).then(function (result) {
+//      if (result.dismiss === swal.DismissReason.timer) {
+        //window.location.href = "https://cdn3.digialm.com/EForms/configuredHtml/1823/94103/Index.html?_gl=1*1967jd6*_gcl_au*MTU4NzIwMjAxMi4xNzYzNTUwMzc2LjE1OTU1NDE4MjIuMTc2NTQyNzE5OS4xNzY1NDI4MzY4";
+        window.open("https://cdn3.digialm.com/EForms/configuredHtml/1823/94103/Index.html?_gl=1*1967jd6*_gcl_au*MTU4NzIwMjAxMi4xNzYzNTUwMzc2LjE1OTU1NDE4MjIuMTc2NTQyNzE5OS4xNzY1NDI4MzY4","_blank");
+//      }
+    });
+  });
+
+$('#ISA-2026_message').on('click', function () {
+    var timerInterval;
+    swal.fire({
+      title: 'ISA-2026',
+      html: 'You are being redirected to our official application portal on cdn3.digialm.com.',
+      timer: 3000,
+      showCancelButton: false,
+      showConfirmButton: false,
+      timerProgressBar: true
+    }).then(function (result) {
+//      if (result.dismiss === swal.DismissReason.timer) {
+        //window.location.href = "https://cdn3.digialm.com/EForms/configuredHtml/1823/96992/Index.html?_gl=1*1967jd6*_gcl_au*MTU4NzIwMjAxMi4xNzYzNTUwMzc2LjE1OTU1NDE4MjIuMTc2NTQyNzE5OS4xNzY1NDI4MzY4";
+        window.open("https://cdn3.digialm.com/EForms/configuredHtml/1823/96992/Index.html?_gl=1*1967jd6*_gcl_au*MTU4NzIwMjAxMi4xNzYzNTUwMzc2LjE1OTU1NDE4MjIuMTc2NTQyNzE5OS4xNzY1NDI4MzY4","_blank");
+//      }
+    });
+  });
+
+$('#BAAT-2026_message').on('click', function () {
+    var timerInterval;
+    swal.fire({
+      title: 'BAAT-2026',
+      html: 'You are being redirected to our official application portal on cdn3.digialm.com.',
+      timer: 3000,
+      showCancelButton: false,
+      showConfirmButton: false,
+      timerProgressBar: true
+    }).then(function (result) {
+//      if (result.dismiss === swal.DismissReason.timer) {
+        //window.location.href = "https://cdn3.digialm.com/EForms/configuredHtml/1823/96992/Index.html?_gl=1*1967jd6*_gcl_au*MTU4NzIwMjAxMi4xNzYzNTUwMzc2LjE1OTU1NDE4MjIuMTc2NTQyNzE5OS4xNzY1NDI4MzY4";
+        window.open("https://cdn3.digialm.com/EForms/configuredHtml/1823/96990/Index.html?_gl=1*zi6kkt*_gcl_au*MTU4NzIwMjAxMi4xNzYzNTUwMzc2LjE1OTU1NDE4MjIuMTc2NTQyNzE5OS4xNzY1NDI4MzY4","_blank");
+//      }
+    });
+  });
+
 </script>
 </html>
